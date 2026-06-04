@@ -37,7 +37,13 @@ jobs:
 
       - name: Rebuild APK
         run: |
-          java -jar apktool_2.9.3.jar b "${APK_NAME}" -o "${APK_NAME}_patched.apk" --no-res
+          # 删除有问题的资源文件
+          rm -f "${APK_NAME}/res/values-anydpi-v26/mipmaps.xml"
+          rm -f "${APK_NAME}/res/values-hdpi/mipmaps.xml"
+          rm -f "${APK_NAME}/res/values-land/layouts.xml"
+          rm -f "${APK_NAME}/res/values-sw600dp/layouts.xml"
+          rm -f "${APK_NAME}/res/values-v22/layouts.xml"
+          java -jar apktool_2.9.3.jar b "${APK_NAME}" -o "${APK_NAME}_patched.apk"
 
       - name: Sign APK
         run: |
