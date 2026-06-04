@@ -27,8 +27,9 @@ jobs:
 
       - name: Decompile APK
         run: |
-          java -jar apktool_2.9.3.jar d "${APK_NAME}.apk" -o "${APK_NAME}" -f
-          echo "Decompiled ${APK_NAME}.apk -> ${APK_NAME}/"
+          # -r 参数：不反编译资源文件
+          java -jar apktool_2.9.3.jar d "${APK_NAME}.apk" -o "${APK_NAME}" -f -r
+          echo "Decompiled ${APK_NAME}.apk -> ${APK_NAME}/ (without resources)"
 
       - name: Apply patches
         run: |
@@ -37,9 +38,6 @@ jobs:
 
       - name: Rebuild APK
         run: |
-          # 删除所有有问题的 mipmaps.xml 和 layouts.xml 文件
-          find "${APK_NAME}/res" -name "mipmaps.xml" -type f -delete
-          find "${APK_NAME}/res" -name "layouts.xml" -type f -delete
           java -jar apktool_2.9.3.jar b "${APK_NAME}" -o "${APK_NAME}_patched.apk"
 
       - name: Sign APK
