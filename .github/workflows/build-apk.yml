@@ -48,4 +48,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: patched-apk
-          path: "*.apk"  # 修改这里：匹配所有 apk 文件
+          path: "*_patched-aligned-debugSigned.apk"
+          # 可选：保留天数，默认90天
+          retention-days: 7
