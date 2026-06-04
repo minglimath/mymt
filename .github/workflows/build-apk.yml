@@ -42,10 +42,14 @@ jobs:
       - name: Sign APK
         run: |
           java -jar uber-apk-signer.jar --apks "${APK_NAME}_patched.apk" --allowResign --overwrite
+          echo "=== 生成的文件列表 ==="
+          ls -la
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: patched-apk
-          path: "${APK_NAME}_patched.apk"
+          path: |
+            ${APK_NAME}_patched-aligned-debugSigned.apk
+            ${APK_NAME}_patched.apk
           retention-days: 7
