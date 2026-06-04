@@ -1,0 +1,22 @@
+# Tools (downloaded in CI)
+*.jar
+
+# Decompiled APK directory (not needed in repo - GH Actions decompiles from APK)
+mt2264/
+
+# Build output
+mt2264_patched*.apk
+classes*.dex
+
+# Backup / temp dirs
+mt2264_orig/
+mt2264_src/
+mt2264_temp/
+
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 修改日志 (optional, exclude if you want clean repo)
+# 修改日志.md
