@@ -37,7 +37,7 @@ jobs:
 
       - name: Rebuild APK
         run: |
-          java -jar apktool_2.9.3.jar b "${APK_NAME}" -o "${APK_NAME}_patched.apk"
+          java -jar apktool_2.9.3.jar b "${APK_NAME}" -o "${APK_NAME}_patched.apk" --no-res
 
       - name: Sign APK
         run: |
