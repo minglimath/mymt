@@ -27,7 +27,6 @@ jobs:
 
       - name: Decompile APK
         run: |
-          # -r 参数：不反编译资源文件
           java -jar apktool_2.9.3.jar d "${APK_NAME}.apk" -o "${APK_NAME}" -f -r
           echo "Decompiled ${APK_NAME}.apk -> ${APK_NAME}/ (without resources)"
 
@@ -43,11 +42,15 @@ jobs:
       - name: Sign APK
         run: |
           java -jar uber-apk-signer.jar --apks "${APK_NAME}_patched.apk" --allowResign --overwrite
+          # 列出所有 APK 文件
+          echo "生成的 APK 文件："
+          ls -la *.apk
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: patched-apk
-          path: "*_patched-aligned-debugSigned.apk"
-          # 可选：保留天数，默认90天
+          # 上传所有 APK 但排除原文件
+          path: "*.apk"
+          exclude: "${APK_NAME}.apk"
           retention-days: 7
