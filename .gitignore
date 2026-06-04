@@ -1,5 +1,6 @@
-# Tools (downloaded in CI)
+# Tools
 *.jar
+!apktool_2.9.3.jar
 
 # Decompiled APK directory (not needed in repo - GH Actions decompiles from APK)
 mt2264/
